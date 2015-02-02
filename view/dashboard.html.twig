@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="text-center">
+        <h1>Dashboard</h1>
+        <a href="logout.php" class="btn btn-default">Logout</a>
+    </div>
+    {% if NULL != error  %}
+        <div class="alert alert-danger fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            {{ error }}</div>
+    {% endif %}
+    {% if NULL == pokemon %}
+        <h2>Add a new pokemon</h2>
+    <form action="#" method="POST">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Name of your pokemon :" class="form-control">
+        </div>
+        <div class="form-group">
+            <select name="type" class="form-control">
+                <option value="null">Select the type of your pokemon</option>
+                <option value='fire'>Type Fire</option>
+                <option value='water'>Type Water</option>
+                <option value='plant'>Type Plant</option>
+            </select>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-default" value="Create this pokemon">
+        </div>
+        <div class="text-center">
+        </div>
+    </form>
+{% else %}
+    <div class="col-md-6 col-md-offset-3">
+        <h2>Your pokemon</h2>
+        <h3>{{ pokemon.name }}</h3>
+        {% if pokemon.type == 0 %}
+        <p>Type Fire</p>
+        {% elseif pokemon.type == 1 %}
+        <p>Type Water</p>
+        {% elseif pokemon.type == 2 %}
+        <p>Type Plant</p>
+        {% endif %}
+        <p class="
+        {% if pokemon.hp > 70 %}
+        alert-success
+        {% elseif pokemon.hp > 40 %}
+        alert-warning
+        {% else %}
+        alert-danger
+        {% endif %}
+        ">{% if pokemon.hp != 0 %}HP :{{ pokemon.hp }} {% else %}Dead{% endif %}</p>
+        {% if pokemon.hp == 0 and true == heal %}
+            <a href="heal.php" class="btn btn-default">Resuscitate</a>
+        {% elseif pokemon.hp == 0 and true != heal %}
+            <p class="alert-danger">You can't heal your pokemon until : {% if(healAffiche.heure != 0) %} {{ healAffiche.heure }}h {% endif %} {%  if(healAffiche.minutes != 0) %} {{ healAffiche.minutes }} minuts et {% endif %} {{ healAffiche.secondes }} second</p>
+        {% endif %}
+        {% if true == fight and pokemon.hp != 0 %}
+            <div class="text-center">
+                <a href="fight.php" class="btn btn-default">FIGHT</a>
+            </div>
+        {% elseif pokemon.hp != 0 %}
+            <p>Your pokemon can't fight until : {% if(fightaffiche.heure != 0) %} {{ fightaffiche.heure }}h {% endif %} {%  if(fightaffiche.minutes != 0) %} {{ fightaffiche.minutes }} minuts et {% endif %} {{ fightaffiche.secondes }} second</p>
+11        {% endif %}
+    </div>
+{% endif %}
+
+{% endblock %}

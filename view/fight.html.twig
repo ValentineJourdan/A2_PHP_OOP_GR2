@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="text-center">
+        <h1>Choose your opponent</h1>
+    </div>
+      {%  set i = 0  %}
+    {% for pokemon in pokemons if trainerId != pokemon.trainer.id %}
+    {% if (i%3 == 0) %}
+        <div class="row">
+    {% endif %}
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <h3>{{ pokemon.name }}</h3>
+        {% if pokemon.type == 0 %}
+            <p>Type Fire</p>
+        {% elseif pokemon.type == 1 %}
+            <p>Type Water</p>
+        {% elseif pokemon.type == 2 %}
+            <p>Type Plant</p>
+        {% endif %}
+        <p class="
+        {% if pokemon.hp > 70 %}
+        alert-success
+        {% elseif pokemon.hp > 40 %}
+        alert-warning
+        {% else %}
+        alert-danger
+        {% endif %}
+        ">HP :{{ pokemon.hp }}</p>
+        <p>Trainer : {{ pokemon.trainer.username }}</p>
+        {% if true == fight %}
+            <div class="text-center">
+                <a href="fight2.php?id={{ pokemon.id }}" class="btn btn-default">FIGHT</a>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if (i%3 == 2) %}
+        </div>
+    {% endif %}
+    {% set i = i+1 %}
+{% endfor %}
+{% endblock %}

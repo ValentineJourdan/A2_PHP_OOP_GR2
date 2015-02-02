@@ -1,0 +1,27 @@
+{
+    "name": "Valentine/a2_php_oop_gr2",
+    "description": "Let's fight !",
+    "require": {
+        "doctrine/dbal": "~2.5",
+        "doctrine/orm": "~2.3",
+        "symfony/console": "~2.5",
+        "twig/twig": "~1.16",
+        "twitter/bootstrap": "~3.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Valentine Jourdan",
+            "email": "valentinejourdan94@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "ValentineJourdan\\PokemonBattle\\": "model"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
